@@ -13,4 +13,25 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require angular
+//= require angular-animate
+//= require angular-cookies
+//= require angular-file-upload-shim
+//= require angular-file-upload
+//= require angular-google-maps
+//= require angular-highlightjs
+//= require angular-resource
+//= require angular-route
+//= require angular-sanitize
+//= require angular-touch
+//= require bootstrap
+//= require es5-shim
+//= require highlight.pack
+//= require jquery
+//= require json3
+//= require lodash.compat
+//= requirey
+//= require ngAutocomplete
+
+//= require app
 //= require_tree .

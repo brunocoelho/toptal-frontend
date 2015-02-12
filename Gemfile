@@ -31,9 +31,10 @@ gem 'spring',        group: :development
 
 gem 'puma'
 
+gem 'bootstrap-sass'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-

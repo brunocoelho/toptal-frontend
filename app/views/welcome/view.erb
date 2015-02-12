@@ -72,109 +72,64 @@
     </div>
 
     <div class="container">
-        <!-- <div data-ng-view=""></div> -->
+
         <div data-ng-controller="MainCtrl as main">
             <div class="row">
-                <div class="col-md-3 full-width user-picture-container text-center">
+                <div class="col-md-3 full-width">
                     <img class="user-picture" data-ng-src="{{main.user.image}}" alt="User's picture"><br>
-                    <div class="user-picture-input" id="name">
-                        <input type="file" data-ng-file-select file-input data-ng-model="myFiles">
-                    </div>
                 </div>
                 <div class="col-md-6 user-main-information">
                     <div>
-                        <input class="input-wysiwyg user-name" data-ng-model="main.user.name" placeholder="Add name" type="text">
+                        <p class="user-name">{{main.user.name}}</p>
                     </div>
                     <div>
-                        <input class="input-wysiwyg bold-label" ng-autocomplete data-ng-model="autocomplete" options="options" details="details" placeholder="Add location" type="text">
+                        <p class="bold-label">{{main.user.location}}</p>
                     </div>
                     <div>
-                        <input class="input-wysiwyg bold-label" data-ng-model="main.user.language" placeholder="Add language" type="text">
+                        <p class="bold-label">{{main.user.language}}</p>
                     </div>
                     <div class="list-skills">
                         <span class="label label-primary single-skill" data-ng-class="skill.level" data-ng-repeat="skill in main.user.skills | skillsFilter">
                             {{skill.name}}
-                            <span class="glyphicon glyphicon-remove remove-skill" data-ng-click="main.deleteSkill($index)" aria-hidden="true"></span>
                         </span>
                     </div>
-                    <div>
-                        <input class="input-wysiwyg bold-label skill-name" data-ng-model="main.skillName" placeholder="Add skill" type="text">
-
-                        <div class="skill-level" data-ng-show="main.shouldShowAddSkillButton()">
-                            <select class="select-skill-level" data-ng-model="main.skillLevel" data-ng-options="skillLevel.level for skillLevel in main.skillLevels"></select>
-                            <span class="glyphicon glyphicon-ok-sign add-skill-button" data-ng-click="main.addSkill()" aria-hidden="true"></span>
-                        </div>
-                    </div>
                 </div>
-                <div class="col-md-3 save-profile-section">
+                <div class="col-md-3 save-profile-section view-screen">
                     <h5>
-                        <span class="label label-default label-action label-save-profile"><span>SAVE PROFILE</span></span>
-                        <span class="label label-default label-action label-publish-profile"><span>PUBLISH PROFILE</span></span>
+                        <span class="label label-default label-action hire-this-developer-label"><span>HIRE THIS DEVELOPER</span></span>
                     </h5>
-                    <p>(You can only publish a completed profile)</p>
                     <div class="upload-resume">
-                        <label for="file-input">
-                            <img src="assets/upload-resume.png" alt="upload resume" />
-                        </label>
-                        <input id="file-input" type="file"/>
+                        <img src="assets/download-resume.png" alt="download resume" />
                     </div>
                 </div>
             </div>
 
             <div class="row portfolio-experience">
-                <div class="col-md-3" data-ng-class="{ 'background-black-when-editing': main.editPortfolio }" data-ng-click="main.enableEditPortfolio()">
+                <div class="col-md-3">
                     <p class="text-center">Portfolio</p>
-                    <div data-ng-switch on="main.editPortfolio">
-                        <div class="view-portfolio" data-ng-switch-when="false">
-                            <h5 class="display-skills">{{main.user.displaySkills()}}</h5>
-                            <ul>
-                                <li data-ng-repeat="entry in main.user.portfolio" data-ng-show="entry.projectName && entry.skills">
-                                    <b>{{entry.projectName}}</b>, {{entry.skills}}
-                                </li>
-                            </ul>
-                        </div>
-                        <div data-ng-switch-when="true">
-                            <div data-ng-repeat="entry in main.user.portfolio">
-                                <form class="form-inline">
-                                    <div class="form-inline">
-                                        <input class="form-control" type="text" data-ng-model="entry.projectName" name="project" placeholder="Project name">
-                                        <input class="form-control" type="text" data-ng-model="entry.skills" name="skill" placeholder="Skills used">
-                                    </div>
-                                </form>
-                            </div>
-                            <span class="glyphicon glyphicon-ok-sign ok-sign-portfolio" data-ng-click="main.disableEditPortfolio($event)"></span>
-                        </div>
+                    <h5 class="display-skills">{{main.user.displaySkills()}}</h5>
+                    <div>
+                        <ul>
+                            <li data-ng-repeat="entry in main.user.portfolio" data-ng-show="entry.projectName && entry.skills">
+                                <b>{{entry.projectName}}</b>, {{entry.skills}}
+                            </li>
+                        </ul>
                     </div>
                 </div>
-
-                <div class="col-md-3" data-ng-class="{ 'background-black-when-editing': main.editExperience }" data-ng-click="main.enableEditExperience()">
+                <div class="col-md-3">
                     <p class="text-center">Experience</p>
-                    <div data-ng-switch on="main.editExperience">
-                        <div class="view-experience" data-ng-switch-when="false">
-                            <ul>
-                                <li data-ng-repeat="entry in main.user.experience" data-ng-show="entry.tech && entry.years">
-                                    <b>{{entry.tech}}</b>, {{entry.years}}
-                                </li>
-                            </ul>
-                        </div>
-                        <div data-ng-switch-when="true">
-                            <div data-ng-repeat="entry in main.user.experience">
-                                <form class="form-inline">
-                                    <div class="form-inline">
-                                        <input class="form-control" type="text" data-ng-model="entry.tech" name="tech" placeholder="Technology">
-                                        <input class="form-control experience-years" type="number" data-ng-model="entry.years" name="years" placeholder="Years">
-                                    </div>
-                                </form>
-                            </div>
-                            <span class="glyphicon glyphicon-ok-sign ok-sign-portfolio" data-ng-click="main.disableEditExperience($event)"></span>
-                        </div>
+                    <h5 class="display-skills"></h5>
+                    <div>
+                        <ul>
+                            <li data-ng-repeat="entry in main.user.experience" data-ng-show="entry.tech && entry.years">
+                                <b>{{entry.tech}}</b>, {{entry.years}}
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <p class="text-center">Sample code and algorithms</p>
-                    <span class="glyphicon glyphicon-edit pull-right toggle-sample-code" data-ng-click="main.toggleSampleCodeView()"></span>
-                    <textarea data-ng-show="main.toggleSampleCode" data-ng-model="main.user.codeSample"></textarea>
-                    <div hljs source="main.user.codeSample" data-ng-hide="main.toggleSampleCode"></div>
+                    <div hljs source="main.user.codeSample"></div>
                 </div>
                 <div class="col-md-3 full-width">
                     <div class="availability">
@@ -192,33 +147,33 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row view-personal-opinions">
                 <div class="col-md-3">
                     <p class="text-center">The most amazing...</p>
                     <blockquote>
-                        <textarea class="input-wysiwyg white" data-ng-model="main.user.amazingProject"></textarea>
+                        <textarea class="input-wysiwyg white" data-ng-model="main.user.amazingProject" disabled></textarea>
                         <footer>{{main.user.firstName()}}</footer>
                     </blockquote>
                 </div>
-                <div class="col-md-3 background-black-when-editing">
+                <div class="col-md-3">
                     <p class="text-center">In clients I look for...</p>
                     <blockquote>
-                        <textarea class="input-wysiwyg white" data-ng-model="main.user.clients"></textarea>
+                        <textarea class="input-wysiwyg white" data-ng-model="main.user.clients" disabled></textarea>
                         <footer>{{main.user.firstName()}}</footer>
                     </blockquote>
                 </div>
                 <div class="col-md-3 full-width">
                     <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
-                    <div data-ng-show="autocomplete" class="short-description-container" style="width:100%;" data-ng-show="main.user.location">
+                    <div class="short-description-container" data-ng-show="main.user.location">
                         <div class="short-description">
-                            {{main.user.firstName()}} lives in {{autocomplete}}. (see map)
+                            {{main.user.firstName()}} lives in {{main.user.location}}. (see map)
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 background-black-when-editing">
+                <div class="col-md-3">
                     <p class="text-center">Note</p>
                     <blockquote>
-                        <textarea class="input-wysiwyg white" data-ng-model="main.user.note.message"></textarea>
+                        <textarea class="input-wysiwyg white" data-ng-model="main.user.note.message" disabled></textarea>
                         <footer>{{main.user.note.from}}</footer>
                     </blockquote>
                 </div>
@@ -229,7 +184,7 @@
             </div>
 
             <div class="row">
-                <div class="col-md-3 full-width text-center">
+                <div class="col-md-3 full-width">
                     <img src="assets/kayaking.jpg" alt="Kayaking" />
                     <div class="short-description-container" style="width:100%;">
                         <div class="short-description">
@@ -237,7 +192,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 full-width text-center">
+                <div class="col-md-3 full-width">
                     <img src="assets/princetown.gif" alt="Princetown" />
                     <div class="short-description-container" style="width:100%;">
                         <div class="short-description">
@@ -248,13 +203,13 @@
                 <div class="col-md-3">
                     <p class="text-center">The most amazing...</p>
                     <blockquote>
-                        <textarea class="input-wysiwyg white" data-ng-model="main.user.amazingProject"></textarea>
+                        <textarea class="input-wysiwyg white" data-ng-model="main.user.amazingProject" disabled></textarea>
                         <footer>{{main.user.firstName()}}</footer>
                     </blockquote>
                 </div>
-                <div class="col-md-3 full-width text-center">
+                <div class="col-md-3 full-width">
                     <img src="assets/portland.png" alt="Portland" />
-                    <div class="short-description-container" style="width:100%;">
+                    <div class="short-description-container">
                         <div class="short-description">
                             {{main.user.firstName()}} lives in {{main.user.location}}. (see map)
                         </div>
@@ -262,117 +217,90 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-12 fill-qa-form centered-label">
-                    <p>
-                        Important! Please also fill out the Q&A form <span class="label label-default"><span>Q&A FORM</span></span>
-                    </p>
-                    <p class="total-answered">
-                        5 of 25 questions answered.
-                    </p>
+            <div class="row view-hire-martin-container">
+                <div class="col-md-9 centered-label view-hire-martin">
+                    To hire Martin join us as a <span class="label label-default"><span>CLIENT</span></span>
                 </div>
-
-                <!-- VIEW SCREEN -->
-                <!-- <div class="col-md-9 centered-label">
-                To hire Martin join us as a <button type="button" class="btn btn-primary">Client</button>
+                <div class="col-md-3 view-hire-martin as-developer">
+                    or as a developer <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                </div>
             </div>
-            <div class="col-md-3">
-            or as a developer <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-        </div> -->
-    </div>
 
-    <div class="centered-label top-skills-label">
-        Top skills on toptal
-    </div>
+            <div class="centered-label top-skills-label">
+                Top skills on toptal
+            </div>
 
-    <div class="row top-skills-row">
-        <div class="col-md-3">
-            <dl class="dl-horizontal">
-                <dt>A</dt><dd>AngularJS Developers</dd>
-                <dd>AWS Developers</dd>
-                <dd>Azure Developers</dd>
-                <dt>B</dt><dd>Bada Developers</dd>
-                <dd>Big Data Architects</dd>
-                <dd>Bing Maps Developers</dd>
-                <dd>Bitcoin Developers</dd>
-                <dd>BlackBerry Developers</dd>
-                <dd>Blender Developers</dd>
-                <dd>Bluetooth Developers</dd>
-                <dt>C</dt><dd>C Developers</dd>
-                <dd>C# Developers</dd>
-                <dd>C++ Developers</dd>
-            </dl>
+            <div class="row top-skills-row">
+                <div class="col-md-3">
+                    <dl class="dl-horizontal">
+                        <dt>A</dt><dd>AngularJS Developers</dd>
+                        <dd>AWS Developers</dd>
+                        <dd>Azure Developers</dd>
+                        <dt>B</dt><dd>Bada Developers</dd>
+                        <dd>Big Data Architects</dd>
+                        <dd>Bing Maps Developers</dd>
+                        <dd>Bitcoin Developers</dd>
+                        <dd>BlackBerry Developers</dd>
+                        <dd>Blender Developers</dd>
+                        <dd>Bluetooth Developers</dd>
+                        <dt>C</dt><dd>C Developers</dd>
+                        <dd>C# Developers</dd>
+                        <dd>C++ Developers</dd>
+                    </dl>
+                </div>
+                <div class="col-md-3">
+                    <dl class="dl-horizontal">
+                        <dt>F</dt><dd>Flex Developers</dd>
+                        <dd>Fortran Developers</dd>
+                        <dd>FoxPro Developers</dd>
+                        <dd>FreeBSD Developers</dd>
+                        <dd>Front-end Developers</dd>
+                        <dt>G</dt><dd>Game Developers</dd>
+                        <dd>Gentoo Developers</dd>
+                        <dd>GIMP Developers</dd>
+                        <dd>GIS Developers</dd>
+                        <dd>Go Engineers</dd>
+                        <dd>Google AdWords Developers</dd>
+                        <dd>Google API Developers</dd>
+                        <dd>Go Engineers</dd>
+                    </dl>
+                </div>
+                <div class="col-md-3">
+                    <dl class="dl-horizontal">
+                        <dt>M</dt><dd>Mono Developers</dd>
+                        <dd>Moodle Developers</dd>
+                        <dd>MSSQL Developers</dd>
+                        <dd>MySQL Developers</dd>
+                        <dt>N</dt><dd>Neo4j Developers</dd>
+                        <dd>NetBSD Developers</dd>
+                        <dd>Node.js Developers</dd>
+                        <dd>nopCommerce Developers</dd>
+                        <dt>O</dt><dd>Objective-C Developers</dd>
+                        <dd>OCaml Developers</dd>
+                        <dd>Oculus Rift Developers</dd>
+                        <dd>offshore Developers</dd>
+                        <dd>Oracle Developers</dd>
+                    </dl>
+                </div>
+                <div class="col-md-3">
+                    <dl class="dl-horizontal">
+                        <dt>T</dt><dd>Twitter Bootstrap Developers</dd>
+                        <dt>U</dt><dd>Ubuntu Developers</dd>
+                        <dd>UI Developers</dd>
+                        <dd>UML Developers</dd>
+                        <dd>Unity or Unity3D Developers</dd>
+                        <dd>Unix Developers</dd>
+                        <dd>UX Developers</dd>
+                        <dt>V</dt><dd>VB.NET Developers</dd>
+                        <dd>Velocity Developers</dd>
+                        <dd>Virtual Reality Developers</dd>
+                        <dd>Visio Developers</dd>
+                        <dd>Visual Basic Developers</dd>
+                        <dd>Visualforce Developers</dd>
+                    </dl>
+                </div>
+            </div>
         </div>
-        <div class="col-md-3">
-            <dl class="dl-horizontal">
-                <dt>F</dt><dd>Flex Developers</dd>
-                <dd>Fortran Developers</dd>
-                <dd>FoxPro Developers</dd>
-                <dd>FreeBSD Developers</dd>
-                <dd>Front-end Developers</dd>
-                <dt>G</dt><dd>Game Developers</dd>
-                <dd>Gentoo Developers</dd>
-                <dd>GIMP Developers</dd>
-                <dd>GIS Developers</dd>
-                <dd>Go Engineers</dd>
-                <dd>Google AdWords Developers</dd>
-                <dd>Google API Developers</dd>
-                <dd>Go Engineers</dd>
-            </dl>
-        </div>
-        <div class="col-md-3">
-            <dl class="dl-horizontal">
-                <dt>M</dt><dd>Mono Developers</dd>
-                <dd>Moodle Developers</dd>
-                <dd>MSSQL Developers</dd>
-                <dd>MySQL Developers</dd>
-                <dt>N</dt><dd>Neo4j Developers</dd>
-                <dd>NetBSD Developers</dd>
-                <dd>Node.js Developers</dd>
-                <dd>nopCommerce Developers</dd>
-                <dt>O</dt><dd>Objective-C Developers</dd>
-                <dd>OCaml Developers</dd>
-                <dd>Oculus Rift Developers</dd>
-                <dd>offshore Developers</dd>
-                <dd>Oracle Developers</dd>
-            </dl>
-        </div>
-        <div class="col-md-3">
-            <dl class="dl-horizontal">
-                <dt>T</dt><dd>Twitter Bootstrap Developers</dd>
-                <dt>U</dt><dd>Ubuntu Developers</dd>
-                <dd>UI Developers</dd>
-                <dd>UML Developers</dd>
-                <dd>Unity or Unity3D Developers</dd>
-                <dd>Unix Developers</dd>
-                <dd>UX Developers</dd>
-                <dt>V</dt><dd>VB.NET Developers</dd>
-                <dd>Velocity Developers</dd>
-                <dd>Virtual Reality Developers</dd>
-                <dd>Visio Developers</dd>
-                <dd>Visual Basic Developers</dd>
-                <dd>Visualforce Developers</dd>
-            </dl>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     </div>
 

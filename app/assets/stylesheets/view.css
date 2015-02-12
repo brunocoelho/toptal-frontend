@@ -1,0 +1,38 @@
+.save-profile-section.view-screen h5 {
+  padding-left: 20%;
+}
+
+.hire-this-developer-label {
+  background-color: black;
+}
+
+.view-hire-martin {
+  background-color: black;
+  border: 0 !important;
+  color: white;
+  height: 85px !important;
+  padding-top: 20px;
+}
+
+.view-hire-martin span.label > span {
+  font-size: .6em;
+}
+
+.view-hire-martin span.label {
+  background-color: white;
+  border-radius: 20px;
+  color: black;
+  font-size: 1.7em;
+}
+
+.view-hire-martin.as-developer {
+  padding-top: 30px;
+}
+
+.view-hire-martin-container {
+  font-size: 1.3em;
+}
+
+.view-personal-opinions textarea {
+  cursor: auto;
+}

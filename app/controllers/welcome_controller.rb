@@ -5,4 +5,8 @@ class WelcomeController < ApplicationController
 
   end
 
+  def view
+      render 'view'
+  end
+
 end
